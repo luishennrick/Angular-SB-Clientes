@@ -1,0 +1,69 @@
+<h1 class="mt-4">Clientes</h1>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active">Cadastro</li>
+</ol>
+<div class="container">
+<div class="row">
+    <div class="col-md-2">
+        <button type="button" class="btn btn-dark" (click)="novoCadastro()">
+            <i class="fa fa-plus"></i> Novo
+        </button>
+    </div>
+</div>
+<br/>
+<div class="row">
+    <div class="col-md-12">
+       <table class="table table-condensed table-hover">
+         <thead>
+            <tr>
+               <th>ID</th>
+               <th>Nome</th>
+               <th>CPF</th>
+               <th>Data Cadastro</th>
+               <th>Editar</th>
+            </tr>
+         </thead>
+         <tbody>
+             <tr *ngFor="let cliente of Clientes">
+                 <td>{{ cliente.id }}</td>
+                 <td>{{ cliente.nome }}</td>
+                 <td>{{ cliente.cpf }}</td>
+                 <td>{{ cliente.dataCadastro }}</td>
+                 <td>
+
+                   <button class="btn btn-primary" routerLink="/clientes-form/{{cliente.id}}">
+                  <i class="fa fa-edit"></i>
+                 </button>
+
+              <button class="btn btn-danger" data-toggle="modal" data-target="#modalDelecao">
+                <i class="fa fa-trash"></i>
+              </button>
+
+            </td>
+             </tr>
+         </tbody>
+       </table>
+    </div>
+  </div>
+
+  <div id="modalDelecao" class="modal fade" role="dialog">
+     <div class="modal-dialog">
+        <div class="modal-content">
+
+          <div class="modal-body">
+            <h4> Confirmação </h4>
+         </div>
+
+           <div class="modal-body" *ngIf="clienteSelecionado">
+             Excluir  {{ clienteSelecionado.nome }} ?
+         </div>
+
+         <div class="modal-footer">
+            <button class="btn btn-danger" (click)="deletarCliente" data-dismiss="modal">Confirmar</button>
+            <button class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+         </div>
+
+        </div>
+     </div>
+  </div>
+</div>
