@@ -14,7 +14,7 @@ export class ClientesFormComponent implements OnInit {
 
   cliente: Cliente;
   success: boolean = false;
-  errors: string[];
+  errors: String[];
   id: number;
   value: any;
 
@@ -34,7 +34,7 @@ export class ClientesFormComponent implements OnInit {
          .subscribe(
            Response =>
               this.cliente = Response,
-              errorResponse => { this.cliente = new Cliente()}
+              errorResponse =>  this.cliente = new Cliente()
 
          )
      }
@@ -51,7 +51,8 @@ export class ClientesFormComponent implements OnInit {
       this.service
         .atualizar(this.cliente)
         .subscribe(response =>{
-          this.success = true;}, errorResponse =>{
+          this.success = true;},
+          errorResponse =>{
             this.errors = ['Erro ao atualizar'];
           })
 
@@ -63,6 +64,7 @@ export class ClientesFormComponent implements OnInit {
          this.success = true;
          this.cliente = Response;
        } , errorResponse =>{
+         this.success = false;
          this.errors = errorResponse.error.errors;
        } )
 
