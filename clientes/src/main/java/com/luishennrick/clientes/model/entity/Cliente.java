@@ -8,10 +8,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.PrePersist;
+
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+
+import org.hibernate.validator.constraints.br.CPF;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -32,8 +35,8 @@ public class Cliente {
     @NotEmpty
     private String nome;
 
-    @Column(nullable = false, length = 11)
-    @NotNull
+    @Column(nullable = false, length = 14)
+    @CPF
     private String cpf;
 
     @Column(name = "data_Cadastro", updatable = false)
